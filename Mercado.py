@@ -14,7 +14,10 @@ class Funcionario(Base):
     cpf = Column(String)
     cargo = Column(String)
     senha = Column(String)
-
+   
+    name_unique_constraint = UniqueConstraint(cpf)
+    name_unique_constraint = UniqueConstraint(nome)
+    
 class Item(Base):
     __tablename__ = 'itens'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -24,15 +27,19 @@ class Item(Base):
     quantidade_estoque = Column(Integer)
     fornecedor_id = Column(Integer, ForeignKey('fornecedores.id'))
     fornecedor = relationship("Fornecedor", back_populates="itens")
-
+    
+    name_unique_constraint = UniqueConstraint(nome)
+    name_unique_constraint = UniqueConstraint(codigo_barras)
+    
 class Fornecedor(Base):
     __tablename__ = 'fornecedores'
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome = Column(String)
     endereco = Column(String)
     itens = relationship("Item", back_populates="fornecedor")
-
-
+    
+    name_unique_constraint = UniqueConstraint(nome)
+    name_unique_constraint = UniqueConstraint(endereco)
 
 class Venda(Base):
     __tablename__ = 'vendas'
