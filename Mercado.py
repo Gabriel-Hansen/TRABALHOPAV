@@ -1,8 +1,8 @@
 #Primeiro arquivo de teste
 
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
-from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 engine = create_engine('sqlite:///mercado.db', echo=True)
 Base = declarative_base()
